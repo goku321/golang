@@ -1,3 +1,7 @@
+/* A hello world web app in Go
+   Two handlers are defined for two different endpoints.
+*/
+
 package main
 
 import (
