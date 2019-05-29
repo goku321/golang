@@ -2,7 +2,14 @@ package main
 
 import (
 	"net/http"
+	"html/templates"
 )
+
+func index(w http.ResponseWriter, r *http.Request) {
+	files := []string{"templates/layout.html",
+					  "templates/navbar.html",
+					  "templates/index.html",}
+}
 
 func main() {
 	mux := http.NewServeMux()
