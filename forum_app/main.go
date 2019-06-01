@@ -6,6 +6,9 @@ import (
 )
 
 func index(w http.ResponseWriter, r *http.Request) {
+	threads, err := data.threads(); if err == nil {
+		_, err := session(w, r)
+	}
 	files := []string{"templates/layout.html",
 					  "templates/navbar.html",
 					  "templates/index.html",}
