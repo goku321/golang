@@ -5,6 +5,10 @@ import (
 	"html/templates"
 )
 
+func handler(writer http.ResponseWriter, request *http.Request) {
+	
+}
+
 func index(w http.ResponseWriter, r *http.Request) {
 	threads, err := data.threads(); if err == nil {
 		_, err := session(w, r)
