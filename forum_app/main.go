@@ -10,7 +10,7 @@ func handler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	threads, err := data.threads(); if err == nil {
+	threads, err := data.Threads(); if err == nil {
 		_, err := session(w, r)
 	}
 	files := []string{"templates/layout.html",
