@@ -7,5 +7,5 @@ import (
 func main() {
 	x := 42
 
-	fmt.Printf("%d\t%b\t%x", x, x, x)
+	fmt.Printf("%d\t%b\t%#x", x, x, x)
 }
