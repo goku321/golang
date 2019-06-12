@@ -5,22 +5,13 @@ import (
 )
 
 const (
-	a = iota
-	b
-	c
-)
-
-const (
-	d = iota
-	e
-	f
+	a = 2019 + iota
+	b = 2019 + iota
+	c = 2019 + iota
 )
 
 func main() {
 	fmt.Println(a)
 	fmt.Println(b)
 	fmt.Println(c)
-	fmt.Println(d)
-	fmt.Println(e)
-	fmt.Println(f)
 }
