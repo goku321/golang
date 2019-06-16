@@ -16,14 +16,27 @@ func (d Dog) Speak() string {
 
 type Cat struct{}
 
-func (c Cat) Speak() string {
+func (c *Cat) Speak() string {
 	return "Meow!"
 }
 
+type Cow struct {}
+
+func (c Cow) Speak() string {
+	return "Mooo..."
+}
+
 func main() {
-	animals := []Animal{Dog{}, Cat{}}
+	// animals := []Animal{Dog{}, Cat{}} won't work
+	animals := []Animal{Dog{}, new(Cat), new(Cow)}
 
 	for _, animal := range animals {
 		fmt.Println(animal.Speak())
 	}
+
+	d := &Dog{}
+	fmt.Printf("%T\n", d)
+
+	c := &Cat{}
+	fmt.Println(c.Speak())
 }
