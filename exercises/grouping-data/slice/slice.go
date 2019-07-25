@@ -19,5 +19,10 @@ func main() {
 
 	// Appending to a slice using built-in `append`
 	x = append(x, 6, 7, 8, 9)
-	fmt.Printf("Slice after appending %v\n", x)
+	fmt.Printf("Slice x after appending: %v\n", x)
+
+	// Appending one slice into another
+	y := []int{99, 100, 101}
+	x = append(x, y...)
+	fmt.Printf("Slice x after appending y to it: %v\n", x)
 }
