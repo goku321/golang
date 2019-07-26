@@ -41,4 +41,8 @@ func main() {
 	z = append(z, 99)
 	fmt.Printf("z after appending 99: %v\n", z)
 	fmt.Printf("Length of z after appending 99 is: %v\n", len(z))
+	z = append(z, 101, 102, 103, 105)
+	fmt.Printf("This is how z looks like now: %v\n", z)
+	fmt.Printf("Length of z is: %v\n", len(z))
+	fmt.Printf("Capacity of z is: %v\n", cap(z))
 }
