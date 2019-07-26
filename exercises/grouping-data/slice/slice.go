@@ -33,4 +33,9 @@ func main() {
 	fmt.Printf("x before deleting the element at index 3: %v\n", x)
 	x = append(x[:3], x[4:]...)
 	fmt.Printf("x after deleting the element at index 3: %v\n", x)
+
+	// Creating a slice using built-in `make`
+	z := make([]int, 10, 14)
+	fmt.Printf("Length of z is: %v\n", len(z))
+	fmt.Printf("Capacity of z is: %v\n", cap(z))
 }
