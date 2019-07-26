@@ -38,4 +38,7 @@ func main() {
 	z := make([]int, 10, 14)
 	fmt.Printf("Length of z is: %v\n", len(z))
 	fmt.Printf("Capacity of z is: %v\n", cap(z))
+	z = append(z, 99)
+	fmt.Printf("z after appending 99: %v\n", z)
+	fmt.Printf("Length of z after appending 99 is: %v\n", len(z))
 }
