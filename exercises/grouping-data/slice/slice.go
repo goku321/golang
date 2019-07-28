@@ -53,4 +53,10 @@ func main() {
 	fmt.Printf("This is how z looks like now: %v\n", z)
 	fmt.Printf("Length of z is: %v\n", len(z))
 	fmt.Printf("Capacity of z is: %v\n", cap(z))
+
+	// Multidimensional slice
+	r1 := []int{1, 2, 3, 4, 5}
+	r2 := []int{6, 7, 8, 9, 10}
+	ms := [][]int{r1, r2}
+	fmt.Printf("Mutlidimensional slice ms looks like: %v\n", ms)
 }
