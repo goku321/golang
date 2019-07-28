@@ -59,4 +59,11 @@ func main() {
 	r2 := []int{6, 7, 8, 9, 10}
 	ms := [][]int{r1, r2}
 	fmt.Printf("Mutlidimensional slice ms looks like: %v\n", ms)
+
+	// Underlying array for a and b are same
+	a := []int{2, 3, 4, 5, 6, 7}
+	b := append(a[:2], a[3:]...)
+	fmt.Printf("a is %v\n", a)
+	fmt.Printf("b is %v\n", b)
+	fmt.Printf("Capacity of a and b is %v and %v\n", cap(a), cap(b))
 }
