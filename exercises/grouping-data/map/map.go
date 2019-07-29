@@ -11,4 +11,16 @@ func main() {
 
 	// Printing a map
 	fmt.Printf("Map m looks like: %v\n", m)
-}
+
+	// Accessing a map using a key
+	fmt.Println(m["Deepak"])
+
+	// Accessing a non-existing key from a map
+	fmt.Println(m["Milton"])
+
+	// Indexing a map returns two values
+	value, ok := m["Milton"]
+	fmt.Println(value, ok)
+	nv, ok := m["Sah"]
+	fmt.Println(nv, ok)
+}	
