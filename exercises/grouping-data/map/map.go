@@ -24,6 +24,10 @@ func main() {
 	nv, ok := m["Sah"]
 	fmt.Println(nv, ok)
 
+	if nv, ok := m["Deepak"]; ok {
+		fmt.Printf("Age of Deepak: %v\n", nv)
+	}
+
 	// Adding an element to a map
 	m["Todd"] = 33
 	fmt.Println(m)
