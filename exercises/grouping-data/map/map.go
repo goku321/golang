@@ -23,4 +23,8 @@ func main() {
 	fmt.Println(value, ok)
 	nv, ok := m["Sah"]
 	fmt.Println(nv, ok)
+
+	// Adding an element to a map
+	m["Todd"] = 33
+	fmt.Println(m)
 }	
