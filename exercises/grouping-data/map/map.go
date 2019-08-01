@@ -6,7 +6,7 @@ func main() {
 	// Creating a string to int map
 	m := map[string]int{
 		"Deepak": 6,
-		"Sah": 3,
+		"Sah":    3,
 	}
 
 	// Printing a map
@@ -31,4 +31,4 @@ func main() {
 	// Adding an element to a map
 	m["Todd"] = 33
 	fmt.Println(m)
-}	
+}
