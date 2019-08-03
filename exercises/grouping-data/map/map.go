@@ -30,5 +30,10 @@ func main() {
 
 	// Adding an element to a map
 	m["Todd"] = 33
-	fmt.Println(m)
+	fmt.Printf("Map after adding an element: %v\n", m)
+
+	// Iterating over a map
+	for key, value := range m {
+		fmt.Println(key, value)
+	}
 }
