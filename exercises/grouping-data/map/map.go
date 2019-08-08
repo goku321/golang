@@ -36,4 +36,8 @@ func main() {
 	for key, value := range m {
 		fmt.Println(key, value)
 	}
+
+	// Deleting from a map
+	delete(m, "Deepak")
+	fmt.Printf("Map m after deleting key Deepak %v\n", m);
 }
