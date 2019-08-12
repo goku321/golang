@@ -40,4 +40,13 @@ func main() {
 	// Deleting from a map
 	delete(m, "Deepak")
 	fmt.Printf("Map m after deleting key Deepak %v\n", m);
+
+	// Deleting a non-existent key
+	delete(m, "Tony")
+
+	// Verifying that a key/value exist before deleting
+	if value, ok := m["Sah"]; ok {
+		fmt.Printf("Deleting value %v\n", value)
+		delete(m, "Tony")
+	}
 }
