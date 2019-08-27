@@ -15,4 +15,10 @@ func main() {
 		}
 		fmt.Println()
 	}
+
+	x["sah_deepak"] = []string{`the`, `time`, `has`, `come`}
+
+	for k, v := range x {
+		fmt.Println(k, v)
+	}
 }
