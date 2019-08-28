@@ -21,4 +21,7 @@ func main() {
 	for k, v := range x {
 		fmt.Println(k, v)
 	}
+
+	delete(x, "bond_james")
+	fmt.Println(x)
 }
