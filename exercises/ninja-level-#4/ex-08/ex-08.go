@@ -23,5 +23,8 @@ func main() {
 	}
 
 	delete(x, "bond_james")
-	fmt.Println(x)
+	fmt.Println("After Deleting a key")
+	for k, v := range x {
+		fmt.Println(k, v)
+	}
 }
