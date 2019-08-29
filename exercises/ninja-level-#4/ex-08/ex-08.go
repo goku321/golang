@@ -22,7 +22,11 @@ func main() {
 		fmt.Println(k, v)
 	}
 
-	delete(x, "bond_james")
+	if v, ok := x["moneypenny_miss"]; ok {
+		fmt.Println("value: ", v)
+		delete(x, "moneypenny_miss")
+	}
+	
 	fmt.Println("After Deleting a key")
 	for k, v := range x {
 		fmt.Println(k, v)
