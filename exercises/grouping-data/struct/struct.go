@@ -36,4 +36,5 @@ func main() {
 	}
 
 	fmt.Println("SA1: ", sa1)
+	fmt.Println	(sa1.first, sa1.last, sa1.ltk)
 }
