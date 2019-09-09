@@ -38,15 +38,17 @@ func main() {
 	fmt.Println("SA1: ", sa1)
 	fmt.Println(sa1.first, sa1.last, sa1.ltk)
 
+	first, last, dob := "Hari", "Om", "18/10/1993"
+
 	// Anonymous struct
 	p2 := struct {
 		first string
 		last  string
 		dob   string
 	}{
-		first: "Hari",
-		last:  "Om",
-		dob:   "18/10/1993",
+		first,
+		last,
+		dob,
 	}
 
 	fmt.Println("This is anonymous struct: ", p2)
