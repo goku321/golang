@@ -13,7 +13,8 @@ var wg sync.WaitGroup
 
 func main() {
 	// Allocate one logical processor for the scheduler to use.
-	runtime.GOMAXPROCS(1)
+	runtime.GOMAXPROCS(runtime.NumCPU())
+	fmt.Println("Number of CPUs: ", runtime.NumCPU())
 
 	wg.Add(2)
 

@@ -8,7 +8,7 @@ import (
 
 func main() {
 	// Allocate one logical processor
-	runtime.GOMAXPROCS(1)
+	runtime.GOMAXPROCS(2)
 
 	// Use wg to wait for the program to finish
 	var wg sync.WaitGroup
