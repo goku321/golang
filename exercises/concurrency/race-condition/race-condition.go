@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"runtime"
 	"sync"
+	"sync/atomic"
 )
 
 var (
 	// counter will be incremented by multiple goroutines
-	counter int
+	counter int64
 	wg      sync.WaitGroup
 )
 
@@ -26,13 +27,9 @@ func incCounter(id int) {
 	defer wg.Done()
 
 	for count := 0; count < 2; count++ {
-		value := counter
+		atomic.AddInt64(&counter, 1)
 
 		// Yield the thread and be placed back in queue.
 		runtime.Gosched()
-
-		value++
-
-		counter = value
 	}
 }
