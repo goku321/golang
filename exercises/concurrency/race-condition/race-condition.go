@@ -27,7 +27,7 @@ func incCounter(id int) {
 	defer wg.Done()
 
 	for count := 0; count < 2; count++ {
-		atomic.AddInt64(&counter, 1)
+		atomic.AddInt64(&counter, 2)
 
 		// Yield the thread and be placed back in queue.
 		runtime.Gosched()
