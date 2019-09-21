@@ -28,12 +28,14 @@ func incCounter(id int) {
 
 	for count := 0; count < 2; count++ {
 		mutex.Lock()
-		value := counter
-		// Yield the thread and be placed back in queue.
-		runtime.Gosched()
+		{
+			value := counter
+			// Yield the thread and be placed back in queue.
+			runtime.Gosched()
 
-		value++
-		counter = value
-		mutex.Unlock()
+			value++
+			counter = value
+			mutex.Unlock()
+		}
 	}
 }
