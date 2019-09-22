@@ -5,14 +5,14 @@ import (
 )
 
 func main() {
-	buffered := make(chan string, 10)
+	unbuffered := make(chan int)
 	
 	go func() {
-		buffered <- "Gopher"
+		unbuffered <- 1
 	}()
 
 	go func() {
-		value := <-buffered
+		value := <-unbuffered
 		fmt.Println("Value received from channel: ", value)
 	}()
 }
