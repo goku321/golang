@@ -13,6 +13,6 @@ func main() {
 
 	go func() {
 		value := <-unbuffered
-		fmt.Println("Value received from channel: ", value)
+		fmt.Println("Value received ", value)
 	}()
 }
