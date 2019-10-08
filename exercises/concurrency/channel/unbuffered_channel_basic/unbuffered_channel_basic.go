@@ -18,8 +18,8 @@ func main() {
 
 	go func() {
 		defer wg.Done()
-		value := <-unbuffered
-		fmt.Println("Value received ", value)
+		value, ok := <-unbuffered
+		fmt.Println("Value received ", value, ok)
 	}()
 
 	wg.Wait()
