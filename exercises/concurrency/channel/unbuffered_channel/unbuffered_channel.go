@@ -31,12 +31,14 @@ func player(name string, court chan int) {
 	defer wg.Done()
 
 	for {
+		// Check if channel is closed
 		ball, ok := <-court
 		if !ok {
 			fmt.Printf("Player %s Won\n", name)
 			return
 		}
 
+		// Randomly check if a goroutine hits or misses the ball
 		n := rand.Intn(100)
 		if n%13 == 0 {
 			fmt.Printf("Player %s Missed\n", name)
