@@ -10,6 +10,9 @@ import (
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", HomeHandler)
+
+	// Add middleware
+	r.Use(loggingMiddleware)
 	
 	http.Handle("/", r)
 
@@ -21,6 +24,15 @@ func main() {
 	log.Fatal(srv.ListenAndServe())
 }
 
+// HomeHandler - root handler
 func HomeHandler(response http.ResponseWriter, request *http.Request) {
 	response.Write([]byte("Response from Home"))
+}
+
+func loggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Println(r.RequestURI)
+
+		next.ServeHTTP(w, r)
+	})
 }
