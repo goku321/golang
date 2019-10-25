@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// MyHandler is an instance of Handler since it has a ServeHTTP method
 type MyHandler struct{}
 
 func (h *MyHandler) ServeHTTP(writer http.ResponseWriter, request *http.Request) {

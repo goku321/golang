@@ -13,12 +13,12 @@ func handler(writer http.ResponseWriter, request *http.Request) {
 	fmt.Fprintf(writer, "Hello World, %s!", request.URL.Path[1:])
 }
 
-func user_handler(writer http.ResponseWriter, request *http.Request) {
+func userHandler(writer http.ResponseWriter, request *http.Request) {
 	fmt.Fprintf(writer, "Hello User!")
 }
 
 func main() {
 	http.HandleFunc("/", handler)
-	http.HandleFunc("/user", user_handler)
+	http.HandleFunc("/user", userHandler)
 	http.ListenAndServe(":8080", nil)
 }
