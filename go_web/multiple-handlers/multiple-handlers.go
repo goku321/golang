@@ -5,12 +5,14 @@ import (
 	"net/http"
 )
 
+// SuccessHandler is called on success.
 type SuccessHandler struct{}
 
 func (s *SuccessHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Request Success")
 }
 
+// FailureHandler is called on failure.
 type FailureHandler struct{}
 
 func (f *FailureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
