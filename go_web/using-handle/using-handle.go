@@ -21,6 +21,7 @@ func (h *countHanlder) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.Handle("/count", new(countHanlder))
+	handler := countHanlder{}
+	http.Handle("/count", &handler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
