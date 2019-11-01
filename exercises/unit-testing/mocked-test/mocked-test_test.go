@@ -1,15 +1,14 @@
 package main
 
 import (
-	"encoding/xml"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 )
 
-const checkMark = "u\2713"
-const ballotX = "u\2717"
+const checkMark = "\u2713"
+const ballotX = "\u2717"
 
 var feed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss>
