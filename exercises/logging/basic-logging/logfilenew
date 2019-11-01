@@ -1,0 +1,2 @@
+{"level":"info","ts":1572611437.744906,"caller":"log-zap/log-zap.go:18","msg":"failed to fetch URL"}
+{"level":"info","ts":1572611437.745277,"caller":"user/user.go:8","msg":"Logging from user package"}
