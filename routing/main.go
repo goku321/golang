@@ -3,18 +3,31 @@ package main
 import (
 	"net/http"
 	"log"
+	"time"
 
+	"github.com/etherlabsio/healthcheck"
+	"github.com/etherlabsio/healthcheck/checkers"
 	"github.com/gorilla/mux"
 )
 
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", HomeHandler)
+	r.Handle("/healthcheck", healthcheck.Handler(
+		healthcheck.WithTimeout(5*time.Second),
+		healthcheck.WithObserver(
+			"heartbeat", checkers.Heartbeat("$PROJECT_PATH/heartbeat"),
+		),
+		healthcheck.WithChecker(
+			"diskspace", checkers.DiskSpace("/var/log", 90),
+		),
+	))
 
 	// Add middleware
 	r.Use(loggingMiddleware)
 	
 	http.Handle("/", r)
+
 
 	srv := http.Server{
 		Handler: r,

@@ -7,6 +7,9 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/nelkinda/health-go"
+	"github.com/nelkinda/health-go/checks/uptime"
 )
 
 func handler(writer http.ResponseWriter, request *http.Request) {
@@ -18,7 +21,9 @@ func userHandler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
+	h := health.New(health.Health{Version: "1", ReleaseID: "1.0.0"}, uptime.System())
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/user", userHandler)
+	http.HandleFunc("/health", h.Handler)
 	http.ListenAndServe(":8080", nil)
 }
