@@ -14,4 +14,9 @@ func main() {
 	fmt.Println("type:", v.Type())
 	fmt.Println("kind is: ", v.Kind())
 	fmt.Println("kind is float64:", v.Kind() == reflect.Float64)
+
+	type MyInt int
+	var y MyInt = 7
+	fmt.Println(reflect.TypeOf(y))
+	fmt.Println(reflect.ValueOf(y).Kind())
 }
