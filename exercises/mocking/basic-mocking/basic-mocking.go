@@ -4,19 +4,29 @@ import "fmt"
 
 type Stringer interface {
 	String() string
-}
-
-func main() {
-	var a s
-	fmt.Println(GetString(a))
+	PrintString(string)
 }
 
 type s string
 
-func (a *s) String() string {
+func (a s) String() string {
 	return "test string"
 }
 
-func GetString(x s) string {
+func (a s) PrintString(x string) {
+	fmt.Println(x)
+}
+
+func GetString(x Stringer) string {
 	return x.String()
+}
+
+func Display(x Stringer) {
+	x.PrintString("hi there")
+}
+
+func main() {
+	var y s
+	GetString(y)
+	Display(y)
 }

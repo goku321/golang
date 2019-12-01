@@ -15,3 +15,12 @@ func TestGetString(t *testing.T) {
 		t.Errorf("%s != %s", y, expected)
 	}
 }
+
+func TestDisplay(t *testing.T) {
+	m := &mocks.Stringer{}
+	m.On("PrintString", "hi there").Return(nil)
+	Display(m)
+	Display(m)
+	Display(m)
+	m.AssertNumberOfCalls(t, "PrintString", 3)
+}

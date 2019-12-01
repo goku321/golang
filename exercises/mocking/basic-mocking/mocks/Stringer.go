@@ -9,6 +9,11 @@ type Stringer struct {
 	mock.Mock
 }
 
+// PrintString provides a mock function with given fields: s
+func (_m *Stringer) PrintString(s string) {
+	_m.Called(s)
+}
+
 // String provides a mock function with given fields:
 func (_m *Stringer) String() string {
 	ret := _m.Called()
