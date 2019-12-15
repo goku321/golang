@@ -12,6 +12,7 @@ func New(storage Storage) *Controller {
 	}
 }
 
+// Payload is common response
 type Payload struct {
 	Value string `json:"value"`
 }
