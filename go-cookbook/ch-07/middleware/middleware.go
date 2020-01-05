@@ -1,6 +1,10 @@
 package middleware
 
-import "net/http"
+import (
+	"log"
+	"time"
+	"net/http"
+)
 
 // Middleware ...
 type Middleware func(http.HandlerFunc) http.HandlerFunc
@@ -12,4 +16,16 @@ func ApplyMiddleware(h http.HandlerFunc, middleware ...Middleware) http.HandlerF
 		applied = m(applied)
 	}
 	return applied
+}
+
+// Logger logs requests
+func Logger(l *log.Logger) Middleware {
+	return func(next http.HandlerFunc) http.HandlerFunc {
+		return func(w http.ResponseWriter, r *http.Request) {
+			start := time.Now()
+			l.Printf("started request to %s with id %s", r.URL, GetID(r.Context()))
+			next(w, r)
+			l.Printf("completed request to %s with id %s in %s", r.URL, GetID(r.Context()), time.Since(start))
+		}
+	}
 }
