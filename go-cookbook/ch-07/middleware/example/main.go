@@ -15,7 +15,7 @@ func main() {
 		middleware.SetID(100),
 	)
 
-	http.HandlerFunc("/", h)
+	http.HandleFunc("/", h)
 	fmt.Println("listening on port :3333")
 	err := http.ListenAndServe(":3333", nil)
 	panic(err)
