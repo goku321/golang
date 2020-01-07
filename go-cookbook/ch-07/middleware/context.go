@@ -1,10 +1,11 @@
 package middleware
 
-import "net/http"
-
-import "context"
-
-import "strconv"
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"strconv"
+)
 
 // ContextID is our type to retrieve our context
 type ContextID int
@@ -17,6 +18,7 @@ func SetID(start int64) Middleware {
 	return func(next http.HandlerFunc) http.HandlerFunc {
 		return func(w http.ResponseWriter, r *http.Request) {
 			ctx := context.WithValue(r.Context(), ID, strconv.FormatInt(start, 10))
+			fmt.Println(r.Context())
 			start++
 			r = r.WithContext(ctx)
 			next(w, r)
