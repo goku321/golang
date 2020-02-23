@@ -27,7 +27,7 @@ func Setup(isSecure, nop bool) *http.Client {
 }
 
 // NopTransport is a No-Op Transport
-type NopTransport struct {}
+type NopTransport struct{}
 
 // RoundTrip implements RoundTripper interface
 func (n *NopTransport) RoundTrip(*http.Request) (*http.Response, error) {
