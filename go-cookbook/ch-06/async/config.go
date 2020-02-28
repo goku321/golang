@@ -21,3 +21,14 @@ type Client struct {
 	Resp chan *http.Response
 	Err  chan error
 }
+
+// AsyncGet performs a Get then returns
+// the resp/error to the appropriate channel
+func (c *Client) AsyncGet(url string) {
+	resp, err := c.Get(url)
+	if err != nil {
+		c.Err <- err
+		return
+	}
+	c.Resp <- resp
+}
