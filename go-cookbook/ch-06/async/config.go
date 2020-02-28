@@ -13,3 +13,11 @@ func NewClient(client *http.Client, bufferSize int) *Client {
 		Err:    errch,
 	}
 }
+
+// Client stores a client and has two channels to aggregate
+// responses and errors
+type Client struct {
+	*http.Client
+	Resp chan *http.Response
+	Err  chan error
+}
