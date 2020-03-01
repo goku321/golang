@@ -8,7 +8,7 @@ func NewClient(client *http.Client, bufferSize int) *Client {
 	respch := make(chan *http.Response, bufferSize)
 	errch := make(chan error, bufferSize)
 	return &Client{
-		client: client,
+		Client: client,
 		Resp:   respch,
 		Err:    errch,
 	}
