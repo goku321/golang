@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	"golang/fiber/user"
+
 	"github.com/gofiber/fiber"
 )
 
@@ -17,6 +19,7 @@ func main() {
 	app.Get("/api", func(c *fiber.Ctx) {
 		c.Send("Api Router Handler")
 	})
+	app.Post("/user", logUser)
 
 	app.Listen(3000)
 }
@@ -34,4 +37,12 @@ var second = func(c *fiber.Ctx) {
 var third = func(c *fiber.Ctx) {
 	fmt.Println("Third Middleware")
 	c.Next()
+}
+
+var logUser = func(c *fiber.Ctx) {
+	var user user.User
+	if err := c.BodyParser(&user); err != nil {
+		fmt.Println(err)
+	}
+	c.Send(user.Info())
 }
