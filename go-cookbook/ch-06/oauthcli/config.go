@@ -1,6 +1,7 @@
 package oauthcli
 
 import (
+	"context"
 	"os"
 
 	"golang.org/x/oauth2"
@@ -17,4 +18,18 @@ func Setup() *oauth2.Config {
 		Scopes:       []string{"repo", "users"},
 		Endpoint:     github.Endpoint,
 	}
+}
+
+// GetToken retrieves a github oauth2 token
+func GetToken(ctx context.Context, conf oauth2.Config) (*oauth2.Token, error) {
+	url := conf.AuthCodeURL("state")
+	fmt.Printf("Type the following url into your browser and
+	follow the directions on screen: %v\n", url)
+	fmt.Println("Paste the code returned in the redirect URL and hit Enter:")
+
+	var code string
+	if _, err := fmt.Scan(&code); err != nil {
+		return nil, err
+	}
+	return conf.Exchange(ctx, code)
 }
