@@ -2,6 +2,7 @@ package oauthcli
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"golang.org/x/oauth2"
@@ -23,8 +24,7 @@ func Setup() *oauth2.Config {
 // GetToken retrieves a github oauth2 token
 func GetToken(ctx context.Context, conf oauth2.Config) (*oauth2.Token, error) {
 	url := conf.AuthCodeURL("state")
-	fmt.Printf("Type the following url into your browser and
-	follow the directions on screen: %v\n", url)
+	fmt.Printf("Type the following url into your browser and follow the directions on screen: %v\n", url)
 	fmt.Println("Paste the code returned in the redirect URL and hit Enter:")
 
 	var code string
