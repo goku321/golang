@@ -18,4 +18,9 @@ func main() {
 	if err := oauthcli.GetUsers(client); err != nil {
 		panic(err)
 	}
+	client := conf.Client(ctx, tok)
+
+	if err := ouathcli.GetUsers(client); err != nil {
+		panic(err)
+	}
 }
