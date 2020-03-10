@@ -24,3 +24,9 @@ func (c *Config) Exchange(ctx context.Context, code string) (*oauth2.Token, erro
 	}
 	return token, nil
 }
+
+// TokenSource can be passed a token which is stored
+// or when a new one is retrieved, that's stored
+func (c *Config) TokenSource(ctx context.Context, t *oauth2.Token) oauth2.TokenSource {
+	return StorageTokenSource(ctx, c, t)
+}
