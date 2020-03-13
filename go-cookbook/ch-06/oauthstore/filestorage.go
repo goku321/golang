@@ -2,6 +2,7 @@ package oauthstore
 
 import (
 	"encoding/json"
+	"errors"
 	"os"
 	"sync"
 
@@ -26,4 +27,26 @@ func (f *FileStorage) GetToken() (*oauth2.Token, error) {
 	var t *oauth2.Token
 	data := json.NewDecoder(in)
 	return t, data.Decode(&t)
+}
+
+// SetToken creates, truncates, then stores a token
+// in a file
+func (f *FileStorage) SetToken(t *oauth2.Token) error {
+	if t == nil || !t.Valid() {
+		return errors.New("bad token")
+	}
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	out, err := os.OpenFile(f.Path, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+	data, err := json.Marshal(&t)
+	if err != nil {
+		return err
+	}
+
+	_, err = out.Write(data)
+	return err
 }
