@@ -1,6 +1,10 @@
 package channels
 
-import "time"
+import (
+	"context"
+	"fmt"
+	"time"
+)
 
 // Printer will print anything sent on the ch chan
 // and will print took every 200 milliseconds
