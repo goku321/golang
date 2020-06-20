@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"os"
@@ -17,18 +18,19 @@ func readByte(r io.Reader) (rune, error) {
 }
 
 func main() {
-	defer profile.Start().Stop()
+	defer profile.Start(profile.MemProfile).Stop()
 
 	f, err := os.Open(os.Args[1])
 	if err != nil {
 		log.Fatalf("could not open file %q: %v", os.Args[1], err)
 	}
 
+	b := bufio.NewReader(f)
 	words := 0
 	inword := false
 
 	for {
-		r, err := readByte(f)
+		r, err := readByte(b)
 		if err == io.EOF {
 			break
 		}
