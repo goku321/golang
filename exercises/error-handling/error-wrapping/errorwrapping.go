@@ -17,7 +17,7 @@ type dbError struct {
 }
 
 func (e *dbError) Error() string {
-	return fmt.Sprintf("%s\n", e.method, e.err)
+	return fmt.Sprintf("%s\n%s", e.method, e.err)
 }
 
 func getUsers() *dbError {
@@ -33,7 +33,11 @@ func saveUser() error {
 
 func main() {
 	err := getUsers()
-	if _, ok := err.(*dbError); !ok {
-		log.Print("yeah")
+	var dbErr *dbError
+	if errors.As(err, &dbErr) {
+		log.Println("it is db Error")
+	}
+	if errors.Is(err, errNoRows) {
+		log.Printf("it is %v:", errNoRows)
 	}
 }
