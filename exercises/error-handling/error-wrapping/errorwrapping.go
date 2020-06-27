@@ -20,6 +20,10 @@ func (e *dbError) Error() string {
 	return fmt.Sprintf("%s\n%s", e.method, e.err)
 }
 
+func (e *dbError) Is(target error) bool {
+	return true
+}
+
 func getUsers() *dbError {
 	return &dbError{
 		method: "getUsers",
@@ -37,7 +41,17 @@ func main() {
 	if errors.As(err, &dbErr) {
 		log.Println("it is db Error")
 	}
+
 	if errors.Is(err, errNoRows) {
-		log.Printf("it is %v:", errNoRows)
+		log.Printf("it is - %v", errNoRows)
+	}
+
+	saveErr := saveUser()
+	if errors.Is(saveErr, errDupRow) {
+		log.Printf("it is - %v", errDupRow)
+	}
+
+	if errors.As(saveErr, &dbErr) {
+		log.Println("it is of type dbError")
 	}
 }
