@@ -20,9 +20,9 @@ type Person struct {
 type JSONPerson struct {
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
-	Age       int
-	Gender    string
-	BornAt    int64
+	Age       int    `json:"age"`
+	Gender    string `json:"gender"`
+	BornAt    int64  `json:"born_at"`
 }
 
 func newJSONPerson(p Person) JSONPerson {
