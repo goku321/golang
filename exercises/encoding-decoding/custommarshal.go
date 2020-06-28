@@ -1,6 +1,11 @@
 package main
 
-import "time"
+import (
+	"encoding/json"
+	"time"
+
+	"log"
+)
 
 // Person represents a person.
 type Person struct {
@@ -11,26 +16,35 @@ type Person struct {
 	BornAt    time.Time
 }
 
-// JSONPerson represents marshalled Person.
+// JSONPerson represents Marshalled Person.
 type JSONPerson struct {
-	FirstName string
-	LastName  string
-	Age       int
-	Gender    string
-	BornAt    int64
+	FirstName, LastName string
+	Age                 int
+	Gender              string
+	BornAt              int64
 }
 
-func (jd JSONPerson) person() Person {
-	return Person{
-		jd.FirstName,
-		jd.LastName,
-		jd.Age,
-		jd.Gender,
-		time.Unix(jd.BornAt, 0),
+func newJSONPerson(p Person) JSONPerson {
+	return JSONPerson{
+		p.FirstName,
+		p.LastName,
+		p.Age,
+		p.Gender,
+		p.BornAt.Unix(),
 	}
 }
 
-// MarshalJSON marshalls Person.
-func (p Person) MarshalJSON() ([]byte, error) {
-	return []byte{}, nil
+// MarshalJSON encodes Person to JSON.
+func (p *Person) MarshalJSON() ([]byte, error) {
+	jsonP := newJSONPerson(*p)
+	return json.Marshal(&jsonP)
+}
+
+func main() {
+	p := &Person{"Go", "Lang", 11, "L", time.Date(2009, 10, 1, 0, 0, 0, 0, time.UTC)}
+	b, err := json.Marshal(&p)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(string(b))
 }
