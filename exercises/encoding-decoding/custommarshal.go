@@ -18,10 +18,11 @@ type Person struct {
 
 // JSONPerson represents Marshalled Person.
 type JSONPerson struct {
-	FirstName, LastName string
-	Age                 int
-	Gender              string
-	BornAt              int64
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Age       int
+	Gender    string
+	BornAt    int64
 }
 
 func newJSONPerson(p Person) JSONPerson {
@@ -40,6 +41,22 @@ func (p *Person) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&jsonP)
 }
 
+// UnmarshalJSON decodes JSON object to Person.
+func (p *Person) UnmarshalJSON(data []byte) error {
+	var jsonP *JSONPerson
+	err := json.Unmarshal(data, &jsonP)
+	if err != nil {
+		return err
+	}
+	p.BornAt = time.Unix(jsonP.BornAt, 0)
+	p.Age = jsonP.Age
+	p.FirstName = jsonP.FirstName
+	p.LastName = jsonP.LastName
+	p.Gender = jsonP.Gender
+
+	return nil
+}
+
 func main() {
 	p := &Person{"Go", "Lang", 11, "L", time.Date(2009, 10, 1, 0, 0, 0, 0, time.UTC)}
 	b, err := json.Marshal(&p)
@@ -47,4 +64,21 @@ func main() {
 		log.Fatal(err)
 	}
 	log.Println(string(b))
+
+	jsonString := `
+	{
+		"first_name": "Go",
+		"last_name": "Lang",
+		"gender": "L",
+		"age": 11,
+		"born_at": 1254355200
+	}
+	`
+
+	var newPerson *Person
+	err = json.Unmarshal([]byte(jsonString), &newPerson)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(newPerson)
 }
