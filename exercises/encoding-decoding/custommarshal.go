@@ -30,9 +30,9 @@ func (t Time) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON implements custom unmarshaler for Time.
-func (t Time) UnmarshalJSON([]byte) error {
+func (t Time) UnmarshalJSON(data []byte) error {
 	var i int64
-	if err := json.Unmarshal(&i); err != nil {
+	if err := json.Unmarshal(data, &i); err != nil {
 		return err
 	}
 	t.Time = time.Unix(i, 0)
