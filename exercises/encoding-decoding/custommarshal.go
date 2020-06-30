@@ -13,11 +13,31 @@ type Person struct {
 	LastName  string    `json:"last_name"`
 	Age       int       `json:"age"`
 	Gender    string    `json:"gender"`
-	BornAt    time.Time `json:"-"`
+	BornAt    time.Time `json:"born_at"`
 }
 
 // PersonX is an alias to Person.
 type PersonX Person
+
+// Time embeds time.Time to enable custom (un)marshalling.
+type Time struct {
+	time.Time
+}
+
+// MarshalJSON implements custom marshaler for Time.
+func (t Time) MarshalJSON() ([]byte, error) {
+	return json.Marshal(t.Time.Unix())
+}
+
+// UnmarshalJSON implements custom unmarshaler for Time.
+func (t Time) UnmarshalJSON([]byte) error {
+	var i int64
+	if err := json.Unmarshal(&i); err != nil {
+		return err
+	}
+	t.Time = time.Unix(i, 0)
+	return nil
+}
 
 // JSONPerson represents Marshalled Person.
 type JSONPerson struct {
