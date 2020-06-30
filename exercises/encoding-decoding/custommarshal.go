@@ -9,30 +9,34 @@ import (
 
 // Person represents a person.
 type Person struct {
-	FirstName string
-	LastName  string
-	Age       int
-	Gender    string
-	BornAt    time.Time
+	FirstName string    `json:"first_name"`
+	LastName  string    `json:"last_name"`
+	Age       int       `json:"age"`
+	Gender    string    `json:"gender"`
+	BornAt    time.Time `json:"-"`
 }
+
+// PersonX is an alias to Person.
+type PersonX Person
 
 // JSONPerson represents Marshalled Person.
 type JSONPerson struct {
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	Age       int    `json:"age"`
-	Gender    string `json:"gender"`
-	BornAt    int64  `json:"born_at"`
+	PersonX
+	BornAt int64 `json:"born_at"`
 }
 
 func newJSONPerson(p Person) JSONPerson {
 	return JSONPerson{
-		p.FirstName,
-		p.LastName,
-		p.Age,
-		p.Gender,
+		PersonX(p),
 		p.BornAt.Unix(),
 	}
+}
+
+// ToPerson converts JSONPerson to Person.
+func (jp JSONPerson) ToPerson() Person {
+	p := Person(jp.PersonX)
+	p.BornAt = time.Unix(jp.BornAt, 0)
+	return p
 }
 
 // MarshalJSON encodes Person to JSON.
@@ -48,12 +52,8 @@ func (p *Person) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
-	p.BornAt = time.Unix(jsonP.BornAt, 0)
-	p.Age = jsonP.Age
-	p.FirstName = jsonP.FirstName
-	p.LastName = jsonP.LastName
-	p.Gender = jsonP.Gender
 
+	*p = jsonP.ToPerson()
 	return nil
 }
 
