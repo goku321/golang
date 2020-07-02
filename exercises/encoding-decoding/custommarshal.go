@@ -101,4 +101,19 @@ func main() {
 		log.Fatal(err)
 	}
 	log.Println(newPerson)
+
+	jsonString = `
+	{
+	  "data": {
+		"object": "card",
+		"id": "card_123",
+		"last4": "4242"
+	  }
+	}
+	`
+	var m map[string]map[string]interface{}
+	if err := json.Unmarshal([]byte(jsonString), &m); err != nil {
+		log.Fatal(err)
+	}
+	log.Println(m)
 }
