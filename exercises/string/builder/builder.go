@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"time"
 )
 
 func concatString(args ...interface{}) string {
@@ -16,6 +17,9 @@ func concatString(args ...interface{}) string {
 }
 
 func main() {
-	str1 := concatString(1, 2, 3, "a", "b", "c", true)
+	str1 := concatString(1, string(2), 3, "a", "b", "c", true)
 	fmt.Println(str1)
+
+	str2 := concatString(time.Now(), 1, 2, 3, "a", true)
+	fmt.Println(str2)
 }
