@@ -55,8 +55,8 @@ func main() {
 	t := p{c} // t is of type p and p embeds x. p also implements method get.
 	a = t
 
-	fmt.Println(a.get())
+	fmt.Println(a.get()) // will call get() defined on p.
 	a.put("from t")
 
-	b.put("should fall back")
+	b.put("should fall back") // will call put() defined on z.
 }
