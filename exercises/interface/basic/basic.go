@@ -26,9 +26,13 @@ func (c cow) speak() string {
 	return "Mooo..."
 }
 
+func (c cow) milk() string {
+	return "here's my milk"
+}
+
 func main() {
-	// animals := []Animal{Dog{}, Cat{}} won't work
-	animals := []animal{dog{}, new(cat), new(cow)}
+	// animals := []animal{Dog{}, Cat{}} won't work
+	animals := []animal{dog{}, &cat{}, new(cow)}
 
 	for _, animal := range animals {
 		fmt.Println(animal.speak())
@@ -39,4 +43,7 @@ func main() {
 
 	c := &cat{}
 	fmt.Println(c.speak())
+
+	moo := cow{}
+	fmt.Println(moo.milk())
 }
