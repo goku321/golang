@@ -13,11 +13,12 @@ func main() {
 		character: []int{1},
 	}
 
-	// update character.
+	// does not update the map.
 	v := m["clay"]
 	v.character = append(v.character, 5)
 	fmt.Println(m)
 
+	// assign the whole value to update.
 	m["clay"] = v
 	fmt.Println(m)
 }
