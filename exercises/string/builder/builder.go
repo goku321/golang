@@ -8,7 +8,7 @@ import (
 
 func concatString(args ...interface{}) string {
 	var b strings.Builder
-	
+
 	for _, v := range args {
 		fmt.Fprintf(&b, "%v|", v)
 	}
