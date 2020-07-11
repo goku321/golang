@@ -22,8 +22,8 @@ func runQueryWithCache(siteID, triggerID int, customerUserID string) (sql.NullFl
 		From("survey_responses").
 		Where(sq.Eq{
 			"site_id":          siteID,
-			"customer_user_id": customerUserID,
 			"trigger_id":       triggerID,
+			"customer_user_id": customerUserID,
 		}).
 		OrderBy("id DESC").
 		Limit(1).
@@ -51,8 +51,8 @@ func runQuery(db *sqlx.DB, siteID, triggerID int, customerUserID string) (sql.Nu
 		From("survey_responses").
 		Where(sq.Eq{
 			"site_id":          siteID,
-			"customer_user_id": customerUserID,
 			"trigger_id":       triggerID,
+			"customer_user_id": customerUserID,
 		}).
 		OrderBy("id DESC").
 		Limit(1).
@@ -80,8 +80,8 @@ func runQueryWithPGX(db *pgx.Conn, siteID, triggerID int, customerUserID string)
 		From("survey_responses").
 		Where(sq.Eq{
 			"site_id":          siteID,
-			"customer_user_id": customerUserID,
 			"trigger_id":       triggerID,
+			"customer_user_id": customerUserID,
 		}).
 		OrderBy("id DESC").
 		Limit(1).
