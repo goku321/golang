@@ -7,6 +7,26 @@ import (
 	"log"
 )
 
+// Account holds account details.
+type Account struct {
+	ID            string `json:"id"`
+	Object        string `json:"object"`
+	RoutingNumber string `json:"routing_number"`
+}
+
+// Card holds card details
+type Card struct {
+	ID     string `json:"id"`
+	Object string `json:"object"`
+	Last4  string `json:"last4"`
+}
+
+// Data holds card and account details.
+type Data struct {
+	*Card
+	*Account
+}
+
 // Person represents a person.
 type Person struct {
 	FirstName string    `json:"first_name"`
@@ -120,5 +140,45 @@ func main() {
 		if err := json.Unmarshal(b, &m); err != nil {
 			log.Fatal(err)
 		}
+	}
+
+	jsonString = `
+	{
+		"data": {
+		  "object": "card",
+		  "id": "card_123",
+		  "last4": "4242"
+		}
+	  }
+	`
+
+	var dm map[string]Data
+	if err := json.Unmarshal([]byte(jsonString), &dm); err != nil {
+		log.Fatal(err)
+	}
+
+	data := dm["data"]
+	if data.Card != nil {
+		log.Println(data.Card)
+	}
+	if data.Account != nil {
+		log.Println(data.Account)
+	}
+
+	b, err = json.Marshal(dm)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(string(b))
+}
+
+// MarshalJSON marshals Data
+func (d Data) MarshalJSON() ([]byte, error) {
+	if d.Account != nil {
+		return json.Marshal(d.Account)
+	} else if d.Card != nil {
+		return json.Marshal(d.Card)
+	} else {
+		return json.Marshal(nil)
 	}
 }
