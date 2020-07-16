@@ -43,6 +43,7 @@ func main() {
 	b := y{c} // injecting z for x.
 
 	a = b // b is of type y and y embeds x, so it automatically implements x.
+	fmt.Printf("%v\n", b)
 
 	fmt.Println(a.get()) // will call get method on z.
 	a.put("value")       // will call put method on z.

@@ -14,9 +14,12 @@ func doWork(ctx context.Context, name string) {
 }
 
 func main() {
-	ctx, cancelFn := context.WithCancel(context.Background())
-	defer cancelFn()
+	ctx, _ := context.WithTimeout(context.Background(), time.Second*8)
+	// defer cancelFn()
+
 	go doWork(ctx, "bob")
-	go doWork(ctx, "joe")
 	go doWork(ctx, "alice")
+	go doWork(ctx, "john")
+
+	time.Sleep(time.Second * 12)
 }

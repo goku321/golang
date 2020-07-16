@@ -44,12 +44,12 @@ func doWork(id int) {
 }
 
 func main() {
-	tasks := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	p := new(2)
+	tasks := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
+	p := new(20)
 
 	for _, t := range tasks {
 		p.run(t)
 	}
 
-	time.Sleep(time.Second * 10)
+	p.shutdown()
 }

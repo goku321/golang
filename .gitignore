@@ -4,3 +4,5 @@ gwp/
 goinaction/
 *logfile
 experiments
+.vscode/
+*settings.json

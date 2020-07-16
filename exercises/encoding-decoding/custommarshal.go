@@ -111,9 +111,14 @@ func main() {
 	  }
 	}
 	`
-	var m map[string]map[string]interface{}
-	if err := json.Unmarshal([]byte(jsonString), &m); err != nil {
+
+	px := Person{}
+	var m map[string]interface{}
+	if b, err := json.Marshal(px); err != nil {
 		log.Fatal(err)
+	} else {
+		if err := json.Unmarshal(b, &m); err != nil {
+			log.Fatal(err)
+		}
 	}
-	log.Println(m)
 }
