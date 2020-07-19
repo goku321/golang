@@ -143,13 +143,13 @@ func main() {
 	}
 
 	jsonString = `
-	{
-		"data": {
-		  "object": "card",
-		  "id": "card_123",
-		  "last4": "4242"
-		}
-	  }
+		{
+			"data": {
+			"object": "card",
+			"id": "card_123",
+			"last4": "4242"
+			}
+	  	}
 	`
 
 	var dm map[string]Data
@@ -172,7 +172,7 @@ func main() {
 	log.Println(string(b))
 }
 
-// MarshalJSON marshals Data
+// MarshalJSON marshals Data.
 func (d Data) MarshalJSON() ([]byte, error) {
 	if d.Account != nil {
 		return json.Marshal(d.Account)
@@ -180,5 +180,15 @@ func (d Data) MarshalJSON() ([]byte, error) {
 		return json.Marshal(d.Card)
 	} else {
 		return json.Marshal(nil)
+	}
+}
+
+// UnmarshalJSON un-marshals json into Data.
+func (d Data) UnmarshalJSON(data []byte) error {
+	temp := struct {
+		Object string `json:"object"`
+	}{}
+	if err := json.Unmarshal(data, &temp); err != nil {
+		return err
 	}
 }
