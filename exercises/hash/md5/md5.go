@@ -25,7 +25,7 @@ func getBytes(x interface{}) ([]byte, error) {
 }
 
 func getBytesSprintF(x interface{}) []byte {
-	s := fmt.Sprint(x)
+	s := fmt.Sprintf("%v", x)
 	return []byte(s)
 }
 
@@ -35,7 +35,7 @@ type person struct {
 }
 
 func main() {
-	p := person{"yoda", 109}
+	p := person{"yoda", 1009}
 	b, err := getBytes(p)
 	if err != nil {
 		log.Fatal(err)
