@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/md5"
 	"encoding/gob"
+	"fmt"
 
 	"log"
 )
@@ -21,6 +22,11 @@ func getBytes(x interface{}) ([]byte, error) {
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(x)
 	return buf.Bytes(), err
+}
+
+func getBytesSprintF(x interface{}) []byte {
+	s := fmt.Sprint(x)
+	return []byte(s)
 }
 
 type person struct {
