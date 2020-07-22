@@ -47,4 +47,12 @@ func main() {
 		log.Fatal(err)
 	}
 	log.Print(v)
+
+	// hash using getBytesSprintF.
+	b = getBytesSprintF(p)
+	v, err = hasher.Write(b)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Print(v)
 }
