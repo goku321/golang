@@ -11,6 +11,7 @@ type jedi struct {
 func main() {
 	var anakin jedi
 	// var definition assigns zero value?
+	// we can access struct fields as well.
 	log.Println(anakin, anakin.midichlorins)
 
 	luke := jedi{}
