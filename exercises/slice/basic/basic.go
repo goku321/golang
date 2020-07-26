@@ -15,6 +15,7 @@ func main() {
 	y := []int{}
 	log.Println(y)
 	log.Printf("len: %v, cap: %v", len(y), cap(y))
+	log.Println(y == nil)
 	// let's try with y.
 	// log.Println(y[0]) // panics
 
@@ -22,4 +23,5 @@ func main() {
 	x = nil
 	log.Println(x)
 	log.Printf("len: %v, cap: %v", len(x), cap(x))
+	log.Println(x == nil)
 }
