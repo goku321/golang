@@ -17,4 +17,9 @@ func main() {
 	log.Printf("len: %v, cap: %v", len(y), cap(y))
 	// let's try with y.
 	// log.Println(y[0]) // panics
+
+	// can nil be assigned to a slice?
+	x = nil
+	log.Println(x)
+	log.Printf("len: %v, cap: %v", len(x), cap(x))
 }
