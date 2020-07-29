@@ -14,4 +14,10 @@ func main() {
 	log.Println(ft)
 
 	log.Println(time.Now())
+
+	t, err = time.Parse("Mon Jan 02 2006 15:04:05 GMT-0700", "Tue Jun 11 2019 13:26:45 GMT+0000")
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(t)
 }
