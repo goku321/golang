@@ -28,6 +28,10 @@ func (v values) Add(key, value string) {
 	v[key] = append(v[key], value)
 }
 
+func change(m values) {
+	m = nil
+}
+
 func main() {
 	tail := &intList{4, nil}
 	head := &intList{2, tail}
@@ -41,7 +45,9 @@ func main() {
 	// direct access.
 	fmt.Println(m["item"])
 
-	m = nil
+	// m = nil
+	change(m) // doesn't reflects.
 	// m.Add("item", "3") // Panics as entry in nil map is not allowed.
 	fmt.Println(len(m))
+
 }
