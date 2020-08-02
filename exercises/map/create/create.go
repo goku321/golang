@@ -31,5 +31,14 @@ func main() {
 	// let's see!
 	var zeroMap map[string]int
 	// It's nil - a zero map points to no hash table at all.
-	fmt.Println(zeroMap == nil)
+	fmt.Println(zeroMap == nil) // "true"
+	// nil and zero length.
+	fmt.Println(len(zeroMap) == 0) // "true"
+
+	// one gotcha here - a nil map behaves like an empty map.
+	// so all the operation except storing to a nil map are safe.
+	// zeroMap["lea"] = 21 // will panic.
+	// lesson learned - map vs var
+	// map creates an empty map.
+	// var creates a nil map.
 }
