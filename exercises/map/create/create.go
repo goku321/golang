@@ -23,4 +23,13 @@ func main() {
 	fmt.Println(m)
 	// this will work as well.
 	m["ben"]++
+
+	// compile error - not possible to take an address of map element.
+	// _ := &m["ben"]
+
+	// what's a zero value for a map?
+	// let's see!
+	var zeroMap map[string]int
+	// It's nil - a zero map points to no hash table at all.
+	fmt.Println(zeroMap == nil)
 }
