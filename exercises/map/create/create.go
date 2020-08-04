@@ -41,4 +41,8 @@ func main() {
 	// lesson learned - map vs var
 	// map creates an empty map.
 	// var creates a nil map.
+
+	// what happens if the key is not present?
+	// you will get the zero value of that type.
+	fmt.Println(zeroMap["no"])
 }
