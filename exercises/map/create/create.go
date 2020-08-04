@@ -45,4 +45,11 @@ func main() {
 	// what happens if the key is not present?
 	// you will get the zero value of that type.
 	fmt.Println(zeroMap["no"])
+
+	// how would you know if the element is there or not?
+	// using ok!
+	_, ok := zeroMap["not"]
+	if !ok {
+		fmt.Printf("element with key '%s' is not present", "not")
+	}
 }
