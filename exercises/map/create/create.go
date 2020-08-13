@@ -47,13 +47,13 @@ func main() {
 	fmt.Println(zeroMap["no"])
 
 	// how would you know if the element is there or not?
-	// using ok!
+	// use ok!
 	_, ok := zeroMap["not"]
 	if !ok {
 		fmt.Printf("element with key '%s' is not present", "not")
 	}
 
 	// can you compare two map?
-	// no! a map can only be compared to nil.
+	// no. a map can only be compared to nil.
 	// m == zeroMap // not possible.
 }
