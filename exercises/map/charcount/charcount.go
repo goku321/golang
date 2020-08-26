@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"unicode"
 	"unicode/utf8"
 )
 
@@ -23,5 +24,11 @@ func main() {
 			fmt.Fprintf(os.Stderr, "charcount: %v\n", err)
 			os.Exit(1)
 		}
+		if r == unicode.ReplacementChar && n == 1 {
+			invalid++
+			continue
+		}
+		counts[r]++
+		utflen[n]++
 	}
 }
