@@ -1,0 +1,12 @@
+# A basic pod manifest.
+apiVersion: v1
+kind: pod
+metadata:
+    name: kubia-manual
+spec:
+    containers:
+    - image: goku321/go-handler:v1.0
+      name: kubia
+      ports:
+      - containerPort: 8081
+        protocol: TCP
