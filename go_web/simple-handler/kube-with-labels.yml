@@ -1,8 +1,11 @@
-# A basic pod manifest.
+# A basic pod manifest with labels.
 apiVersion: v1
 kind: Pod
 metadata:
-    name: kubia-manual
+    name: kubia-manual-v2
+    labels:
+        creation_method: manual
+        env: prod
 spec:
     containers:
     - image: goku321/go-handler:v1.0
