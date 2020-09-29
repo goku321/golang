@@ -22,5 +22,7 @@ func getData(url string) error {
 }
 
 func main() {
-	getData("blah")
+	if err := getData("blah"); err != nil {
+		log.Fatal(err)
+	}
 }
