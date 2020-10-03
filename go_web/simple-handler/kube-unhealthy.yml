@@ -1,0 +1,19 @@
+# A basic pod manifest with labels.
+apiVersion: v1
+kind: Pod
+metadata:
+    name: kubia-liveness
+    labels:
+        creation_method: manual
+        env: prod
+spec:
+    containers:
+    - image: goku321/bad-handler:v1.1
+      name: kubia
+      livenessProbe:
+        httpGet:
+            path: /
+            port: 8081
+      ports:
+      - containerPort: 8081
+        protocol: TCP
