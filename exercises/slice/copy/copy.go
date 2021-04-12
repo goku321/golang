@@ -9,12 +9,17 @@ import "fmt"
 func insert(x []int, index, value int) []int {
 	// Grow the slice by one element.
 	x = x[0 : len(x)+1]
+	// Create room for new element.
 	copy(x[index+1:], x[index:])
+	// Insert the new element.
 	x[index] = value
 	return x
 }
 
 func main() {
-	x := [5]int{1, 2, 4, 5}
-	fmt.Println(insert(x[:4], 2, 3))
+	x := make([]int, 5, 10)
+	for i := range x {
+		x[i] = i
+	}
+	fmt.Println(insert(x, 2, 3))
 }
